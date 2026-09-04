@@ -1,0 +1,295 @@
+body {
+
+    font-family: Arial, sans-serif;
+
+    background-color: #f2f6ff;
+
+    text-align: center;
+
+    padding-top: 50px;
+
+    margin: 0;
+
+}
+
+
+h1 {
+
+    color: #1a4b8c;
+
+    margin-bottom: 10px;
+
+}
+
+
+body > p {
+
+    color: #555;
+
+    font-size: 16px;
+
+    margin-bottom: 25px;
+
+}
+
+
+input {
+
+    width: 250px;
+
+    padding: 12px;
+
+    margin: 8px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    box-sizing: border-box;
+
+}
+
+
+button {
+
+    padding: 12px 30px;
+
+    background-color: #1a4b8c;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+button:hover {
+
+    background-color: #123763;
+
+}
+
+
+/* ============================= */
+/* Student Dashboard              */
+/* ============================= */
+
+#dashboard {
+
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 20px auto 30px auto;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+
+    background-color: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
+
+}
+
+
+/* Dashboard Buttons */
+
+#dashboard button {
+
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 14px 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #1a4b8c;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    white-space: normal;
+
+    box-sizing: border-box;
+
+    transition: 0.2s ease;
+
+}
+
+
+/* Dashboard Button Hover */
+
+#dashboard button:hover {
+
+    background-color: #123763;
+
+    transform: translateY(-2px);
+
+}
+
+
+/* Dashboard Content */
+
+#dashboardContent {
+
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 0 auto 30px auto;
+
+    padding: 25px;
+
+    background-color: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
+
+    overflow-x: auto;
+
+}
+
+
+/* Content Heading */
+
+#dashboardContent h2 {
+
+    color: #1a4b8c;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* Tables */
+
+#dashboardContent table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin: 20px auto;
+
+}
+
+
+/* Table Header */
+
+#dashboardContent th {
+
+    background-color: #1a4b8c;
+
+    color: white;
+
+    padding: 12px;
+
+}
+
+
+/* Table Data */
+
+#dashboardContent td {
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+}
+
+
+/* ============================= */
+/* Tablet                        */
+/* ============================= */
+
+@media (max-width: 900px) {
+
+    #dashboard {
+
+        width: 95%;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 12px;
+
+    }
+
+    #dashboardContent {
+
+        width: 95%;
+
+    }
+
+}
+
+
+/* ============================= */
+/* Mobile                        */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding-top: 30px;
+
+    }
+
+
+    #dashboard {
+
+        width: 95%;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 10px;
+
+        padding: 15px;
+
+    }
+
+
+    #dashboard button {
+
+        font-size: 13px;
+
+        padding: 12px 6px;
+
+    }
+
+
+    #dashboardContent {
+
+        width: 95%;
+
+        padding: 15px;
+
+    }
+
+}

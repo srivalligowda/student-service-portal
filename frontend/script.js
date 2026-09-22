@@ -1,8 +1,6 @@
-
-
-
-
 function login() {
+
+
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -14,6 +12,7 @@ function login() {
             const student = students.find(
                 s => s.email === email && s.password === password
             );
+
 
             if (student) {
                 alert("Login Successful! Welcome " + student.name);
@@ -34,20 +33,29 @@ function registerStudent() {
     const email = document.getElementById("regEmail").value;
     const password = document.getElementById("regPassword").value;
 
-    fetch("/students", {
+    fetch("/api/auth/register", {
         method: "POST",
         headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/json"
         },
-        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+        body: JSON.stringify({
+            studentId: email,
+            fullName: name,
+            email: email,
+            password: password
+        })
     })
         .then(response => response.json())
-        .then(student => {
-            alert("Registration Successful! Welcome " + student.name);
+        .then(data => {
+            if (!data.ok) {
+                throw new Error(data.error || "Registration failed");
+            }
+
+            alert("Registration Successful!");
         })
         .catch(error => {
             console.error("Registration Error:", error);
-            alert("Registration failed");
+            alert(error.message);
         });
 }
 

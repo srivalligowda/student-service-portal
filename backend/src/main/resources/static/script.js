@@ -68,45 +68,49 @@ function registerStudent() {
         return;
     }
 
-    fetch("/students", {
+    fetch("/api/auth/register", {
 
         method: "POST",
 
         headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/json"
         },
 
-        body:
-            `name=${encodeURIComponent(name)}` +
-            `&email=${encodeURIComponent(email)}` +
-            `&password=${encodeURIComponent(password)}`
+        body: JSON.stringify({
+            studentId: email,
+            fullName: name,
+            email: email,
+            password: password
+        })
     })
 
-        .then(response => {
+    .then(response => {
 
-            if (!response.ok) {
-                throw new Error("Registration failed");
-            }
+        if (!response.ok) {
+            return response.json().then(data => {
+                throw new Error(data.message || "Registration failed");
+            });
+        }
 
-            return response.json();
-        })
+        return response.json();
+    })
 
-        .then(student => {
+    .then(data => {
 
-            alert("Registration Successful! Welcome " + student.name);
+        alert(data.message || "Registration Successful!");
 
-            document.getElementById("regName").value = "";
-            document.getElementById("regEmail").value = "";
-            document.getElementById("regPassword").value = "";
+        document.getElementById("regName").value = "";
+        document.getElementById("regEmail").value = "";
+        document.getElementById("regPassword").value = "";
 
-        })
+    })
 
-        .catch(error => {
+    .catch(error => {
 
-            console.error("Registration Error:", error);
-            alert("Registration failed");
+        console.error("Registration Error:", error);
+        alert(error.message || "Registration failed");
 
-        });
+    });
 }
 
 

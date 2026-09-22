@@ -34,7 +34,7 @@ function registerStudent() {
     const email = document.getElementById("regEmail").value;
     const password = document.getElementById("regPassword").value;
 
-    fetch("http://127.0.0.1:8080/students", {
+    fetch("/students", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"

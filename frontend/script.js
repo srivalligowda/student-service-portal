@@ -47,11 +47,7 @@ function registerStudent() {
     })
         .then(response => response.json())
         .then(data => {
-            if (!data.ok) {
-                throw new Error(data.error || "Registration failed");
-            }
-
-            alert("Registration Successful!");
+            alert(data.message || "Registration Successful!");
         })
         .catch(error => {
             console.error("Registration Error:", error);

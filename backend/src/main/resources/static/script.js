@@ -59,60 +59,37 @@ function login() {
 
 function registerStudent() {
 
-    const name = document.getElementById("regName").value.trim();
-    const email = document.getElementById("regEmail").value.trim();
+    const name = document.getElementById("regName").value;
+    const email = document.getElementById("regEmail").value;
     const password = document.getElementById("regPassword").value;
 
-    if (name === "" || email === "" || password === "") {
-        alert("Please fill all registration fields");
-        return;
-    }
-
-    fetch("/api/auth/register", {
-
+    fetch("/students", {
         method: "POST",
-
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/x-www-form-urlencoded"
         },
-
-        body: JSON.stringify({
-            studentId: email,
-            fullName: name,
-            email: email,
-            password: password
-        })
+        body:
+            `name=${encodeURIComponent(name)}` +
+            `&email=${encodeURIComponent(email)}` +
+            `&password=${encodeURIComponent(password)}`
     })
+        .then(async response => {
+            const data = await response.json();
 
-    .then(response => {
-
-        if (!response.ok) {
-            return response.json().then(data => {
+            if (!response.ok) {
                 throw new Error(data.message || "Registration failed");
-            });
-        }
+            }
 
-        return response.json();
-    })
-
-    .then(data => {
-
-        alert(data.message || "Registration Successful!");
-
-        document.getElementById("regName").value = "";
-        document.getElementById("regEmail").value = "";
-        document.getElementById("regPassword").value = "";
-
-    })
-
-    .catch(error => {
-
-        console.error("Registration Error:", error);
-        alert(error.message || "Registration failed");
-
-    });
+            return data;
+        })
+        .then(student => {
+            alert("Registration Successful! Welcome " + student.name);
+        })
+        .catch(error => {
+            console.error("Registration Error:", error);
+            alert(error.message);
+        });
 }
-
 
 /* =========================================================
    OLD DASHBOARD FUNCTION

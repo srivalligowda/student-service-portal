@@ -33,17 +33,15 @@ function registerStudent() {
     const email = document.getElementById("regEmail").value;
     const password = document.getElementById("regPassword").value;
 
-    fetch("/api/auth/register", {
+    fetch("/students", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: JSON.stringify({
-            studentId: email,
-            fullName: name,
-            email: email,
-            password: password
-        })
+        body:
+    `name=${encodeURIComponent(name)}` +
+    `&email=${encodeURIComponent(email)}` +
+    `&password=${encodeURIComponent(password)}`
     })
         .then(response => response.json())
         .then(data => {
